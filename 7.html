@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>JSON & Crypto Demo</title>
+    <style>
+        body{
+            font-family: Arial;
+            background: #eef2ff;
+            margin: 0;
+            padding: 20px;
+        }  
+        h2{
+            text-align: center;
+            color: 20px;
+        }
+        .card{
+            background: #fff;
+            padding: 15px;
+            margin: 15px auto;
+            border-radius: 12px;
+            max-width: 550px;
+            box-shadow: 0 3px 10px rgba(0,0,0.1);
+        }
+        textarea,input{
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            font-family: monospace;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button{
+            background: #4abcf7;
+            color: #fff;
+            border: 0;
+            padding: 6px 12px;
+            margin-top: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover{
+            background: #3452d1;
+        }
+        pre{
+            background: #f5f7ff;
+            padding: 8px;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <h2>✨JSON & Crypto Operation✨</h2>
+
+    <div class="card">
+        <h3>(a) JSON ➡️ Object</h3>
+        <textarea id="a" placeholder='Type JSON here, e.g. {"name":"aarav","age":22}'></textarea>
+        <button onclick="A()">Convert</button><pre id="o1"></pre>
+    </div>
+
+   <div class="card">
+    <h3>(b) JSON Date ➡️ JS Date</h3>
+    <input id="b" placeholder='{"date":"2025-10-15"}'>
+    <button onclick="B()">Convert</button>
+    <pre id="o2"></pre>
+  </div>
+
+
+    <div class="card">
+    <h3>(c) JSON ↔️ CSV</h3>
+    <textarea id="c1" placeholder='[{"name":"Aarav","age":22},{"name":"Divya","age":25}]'></textarea>
+    <button onclick="C1()">JSON ➡️ CSV</button>
+    <pre id="o3"></pre>
+    <textarea id="c2" placeholder='Aarav,22\nDivya,25'></textarea>
+    <button onclick="C2()">CSV ➡️ JSON</button>
+    <pre id="o4"></pre>
+  </div>
+
+    <div class="card">
+    <h3>(d) String ➡️ SHA256</h3>
+    <input id="d" placeholder="Enter any text to hash">
+    <button onclick="D()">Generate Hash</button>
+    <pre id="o5"></pre>
+  </div>
+
+ <script>
+function A() {
+    try {
+        o1.textContent = JSON.stringify(JSON.parse(a.value), null, 2);
+    } catch {
+        o1.textContent = "❌ Invalid JSON";
+    }
+}
+
+function B() {
+    try {
+        o2.textContent = new Date(JSON.parse(b.value).date);
+    } catch {
+        o2.textContent = "❌ Invalid Date JSON";
+    }
+}
+
+function C1() {
+    try {
+        o3.textContent = JSON.parse(c1.value)
+            .map(x => Object.values(x).join(","))
+            .join("\n");
+    } catch {
+        o3.textContent = "❌ Invalid JSON";
+    }
+}
+
+function C2() {
+    try {
+        o4.textContent = JSON.stringify(
+            c2.value.trim().split("\n").map(r => {
+                let [n, a] = r.split(",");
+                return { name: n, age: +a };
+            }),
+            null,
+            2
+        );
+    } catch {
+        o4.textContent = "❌ Invalid JSON";
+    }
+}
+
+        
+ 
+
+
+          async function D() {
+            try {
+                let h = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(d.value));
+                o5.textContent = Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, "0")).join("");
+            }
+            catch {
+                o5.textContent = "❌ Error generating hash";
+            }
+        }
+            
+    
+
+    </script>
+    
+</body>
+</html>

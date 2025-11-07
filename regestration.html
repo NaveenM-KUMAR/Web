@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regetsration Page</title>
+    <style>
+        body{
+            background: lightgray;
+            font-family: arial;}
+    .form-box{
+        background:white;
+        padding: 20px;
+        width: 400px;
+        margin: auto;
+        border-radius: 8px;
+    }
+    h2{
+        text-align: center;
+        color: blue;
+    }
+    table{
+        width: 100%;}
+    td{
+        padding: 6px;
+        font-size:14px;
+        color: darkgreen;
+    }
+    input,select{
+        width: 100%;
+        padding: 5px;
+    }
+    input[type=radio]{width:auto;}
+    input[type=submit]{background: green;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;}
+    input[type=submit]:hover{background: darkgreen;}
+
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>Regestration Form</h2>
+        <form>
+            <table>
+                <tr><td>Name:</td><td><input type="text" required></td></tr>
+                <tr><td>Email:</td><td><input type="email" required></td></tr>
+                <tr><td>Password:</td><td><input type="password" required></td></tr>
+                <tr><td>DOB:</td><td><input type="date" ></td></tr>
+                <tr><td>State:</td>
+                <td>
+                    <select><option>Maharashtra</option><option>Karnataka</option><option>TamilNadu<option></option></select>
+                </td></tr>
+                <tr><td>Gender:</td>
+                <td>
+                    <input type="radio" name="gender">Male
+                    <input type="radio" name="gender">Female
+                    <input type="radio" name="gender">other
+
+                </td>
+                </tr>
+                <tr><td>Phone:</td><td><input type="text"></td></tr>
+                <tr><td>Address:</td><td><input type="text"></td></tr>
+                <tr><td colspan="2" style="text-align: center;"><input type="submit" value="Regester"></td>
+                
+                
+            </table>
+        </form>
+    </div>
+</body>
+</html>
