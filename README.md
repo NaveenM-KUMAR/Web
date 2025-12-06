@@ -10,7 +10,7 @@ String message = sc.nextLine();
 System.out.print("Enter generator: "); 
 String generator = sc.nextLine(); 
 int data[] = new int[message.length() + generator.length() - 1]; 
-int divisor[] = new int[generator.length()]; 
+int divisor[] = new int[generator.length()]; ddd
 for(int i=0;i<message.length();i++) 
 data[i] = Integer.parseInt(message.charAt(i)+""); 
 for(int i=0;i<generator.length();i++) 
